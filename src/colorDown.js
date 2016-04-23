@@ -1,9 +1,8 @@
 import React, {
   Component,
-  AppRegistry
+  AppRegistry,
 } from 'react-native';
 import { Provider } from 'react-redux';
-import CameraComp from './components/CameraComp';
 import App from './App';
 import configureStore from './store/configureStore';
 
