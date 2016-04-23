@@ -6,7 +6,10 @@ import React, {
   TouchableHighlight,
 } from 'react-native';
 // import theme from '../theme';
+import { connect } from 'react-redux';
 import Camera from 'react-native-camera';
+import { mapDispatchToProps } from '../util/redux';
+import * as globalActions from '../actions/global';
 
 const styles = StyleSheet.create({
   preview: {
@@ -46,12 +49,10 @@ const styles = StyleSheet.create({
 });
 
 class Photo extends React.Component {
-  takePicture() {
-    this.camera.capture()
-      .then((data) => {
-
-      })
-      .catch(err => console.error(err));
+  _takePicture() {
+    this.camera.capture(data => {
+      this.props.changeTab(2);
+    });
   }
 
   render() {
@@ -64,7 +65,7 @@ class Photo extends React.Component {
         aspect={Camera.constants.Aspect.fit}
       >
         <View style={styles.buttonBar}>
-          <TouchableHighlight style={styles.button} onPress={this._switchCamera.bind(this)}>
+          <TouchableHighlight style={styles.button} onPress={this._switchCamera}>
             <Text style={styles.buttonText}>Flip</Text>
           </TouchableHighlight>
           <TouchableHighlight style={styles.button} onPress={this._takePicture.bind(this)}>
@@ -76,4 +77,7 @@ class Photo extends React.Component {
   }
 }
 
-export default Photo;
+export default connect(
+  state => ({}),
+  mapDispatchToProps(globalActions)
+)(Photo);

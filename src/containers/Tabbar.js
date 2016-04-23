@@ -3,6 +3,8 @@ import React, {
   PropTypes,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { mapDispatchToProps } from '../util/redux';
+import * as globalActions from '../actions/global';
 import ScrollableTabView, {
   DefaultTabBar,
 } from 'react-native-scrollable-tab-view';
@@ -14,13 +16,12 @@ import Boards from './Boards';
 
 const Tabbar = props => (
   <ScrollableTabView
-    initialPage={1}
     tabBarPosition="bottom"
     tabBarUnderlineColor={theme.color.three}
     tabBarActiveTextColor={theme.color.three}
     tabBarInactiveTextColor={theme.color.two}
     page={props.tab}
-    onChangeTab={(i, t) => console.log(i)}
+    onChangeTab={i => props.changeTab(i.i)}
     renderTabBar={() => <DefaultTabBar />}
   >
     <ScrollView
@@ -49,5 +50,6 @@ Tabbar.propTypes = {
 export default connect(
   state => ({
     tab: state.global.tab,
-  })
+  }),
+  mapDispatchToProps(globalActions)
 )(Tabbar);
