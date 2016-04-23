@@ -8,6 +8,7 @@ import React, {
 // import theme from '../theme';
 import { connect } from 'react-redux';
 import Camera from 'react-native-camera';
+import api from '../api';
 import { mapDispatchToProps } from '../util/redux';
 import * as globalActions from '../actions/global';
 
@@ -51,6 +52,10 @@ const styles = StyleSheet.create({
 class Photo extends React.Component {
   _takePicture() {
     this.camera.capture(data => {
+      this.props.toggleLoading();
+      /** get image from library and send
+        request to api **/
+      this.props.toggleLoading();
       this.props.changeTab(2);
     });
   }

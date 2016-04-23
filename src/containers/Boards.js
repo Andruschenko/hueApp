@@ -5,7 +5,6 @@ import React, {
   PropTypes,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Shimmer from 'react-native-shimmer';
 import Board from '../components/Board';
 
 const styles = StyleSheet.create({
