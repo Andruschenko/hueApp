@@ -14,6 +14,7 @@
     "react-native-camera": "^0.3.8",
     "react-native-progress": "^2.2.2",
     "react-native-scrollable-tab-view": "^0.4.1",
+    "react-native-shimmer": "0.0.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.1",
     "redux-thunk": "^2.0.1",

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import { pictures } from './pictures';
 import { globalReducer } from './global';
+import { pictures } from './pictures';
+import { boards } from './boards';
 
 const rootReducer = combineReducers({
-  pictures,
   global: globalReducer,
+  pictures,
+  boards,
 });
 
 export default rootReducer;

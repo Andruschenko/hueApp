@@ -4,11 +4,13 @@ import Tabbar from './containers/Tabbar';
 import Loading from './components/Loading';
 
 const App = props => {
+  console.log(props);
+  const { isLoading, loadProgress } = props.global;
   let component = <Tabbar />;
-  if (props.isLoading) component = <Loading progress={props.loadProgress} />;
+  if (isLoading) component = <Loading progress={loadProgress} />;
   return component;
 };
 
 export default connect(
-  state => state.global
+  state => state
 )(App);
