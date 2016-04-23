@@ -1,6 +1,8 @@
 import React, {
   ScrollView,
+  PropTypes,
 } from 'react-native';
+import { connect } from 'react-redux';
 import ScrollableTabView, {
   DefaultTabBar,
 } from 'react-native-scrollable-tab-view';
@@ -10,13 +12,15 @@ import Photo from './Photo';
 import Pieces from './Pieces';
 import Boards from './Boards';
 
-const Tabbar = () => (
+const Tabbar = props => (
   <ScrollableTabView
     initialPage={1}
     tabBarPosition="bottom"
     tabBarUnderlineColor={theme.color.three}
     tabBarActiveTextColor={theme.color.three}
     tabBarInactiveTextColor={theme.color.two}
+    page={props.tab}
+    onChangeTab={(i, t) => console.log(i)}
     renderTabBar={() => <DefaultTabBar />}
   >
     <ScrollView
@@ -38,5 +42,12 @@ const Tabbar = () => (
     </ScrollView>
   </ScrollableTabView>
 );
+Tabbar.propTypes = {
+  tab: PropTypes.number.isRequired,
+};
 
-export default Tabbar;
+export default connect(
+  state => ({
+    tab: state.global.tab,
+  })
+)(Tabbar);

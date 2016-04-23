@@ -3,6 +3,7 @@ import * as types from '../actions/global';
 const initialState = {
   isLoading: false,
   loadProgress: 0,
+  tab: 1,
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ export const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         progress: action.value,
+      };
+
+    case types.CHANGE_TAB:
+      return {
+        ...state,
+        tab: action.index,
       };
 
     default:

@@ -46,14 +46,11 @@ const styles = StyleSheet.create({
 });
 
 class Photo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.takePicture.bind(this);
-  }
-
   takePicture() {
     this.camera.capture()
-      .then((data) => console.log(data))
+      .then((data) => {
+
+      })
       .catch(err => console.error(err));
   }
 
@@ -67,10 +64,10 @@ class Photo extends React.Component {
         aspect={Camera.constants.Aspect.fit}
       >
         <View style={styles.buttonBar}>
-          <TouchableHighlight style={styles.button} onPress={this._switchCamera}>
+          <TouchableHighlight style={styles.button} onPress={this._switchCamera.bind(this)}>
             <Text style={styles.buttonText}>Flip</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress={this._takePicture}>
+          <TouchableHighlight style={styles.button} onPress={this._takePicture.bind(this)}>
             <Text style={styles.buttonText}>Take</Text>
           </TouchableHighlight>
         </View>

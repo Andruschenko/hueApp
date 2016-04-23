@@ -2,10 +2,25 @@ import React, {
   View,
   StyleSheet,
 } from 'react-native';
-import Loading from '../components/Loading';
 
-const Pieces = () => (
-  <Loading progress={0.2} />
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+  color: {
+
+  },
+});
+
+const Pieces = props => (
+  <View style={styles.container}>
+    <View style={styles.color}>
+    </View>
+    <View style={styles.color}>
+    </View>
+    <View style={styles.color}>
+    </View>
+  </View>
 );
 
 export default Pieces;
