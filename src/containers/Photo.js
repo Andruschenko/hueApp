@@ -4,6 +4,7 @@ import React, {
   Dimensions,
   StyleSheet,
   TouchableHighlight,
+  Alert,
 } from 'react-native';
 // import theme from '../theme';
 import { connect } from 'react-redux';
@@ -37,12 +38,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: 30,
   },
-  button: {
+  buttonOuter: {
+    flex: 1,
     padding: 10,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
-    margin: 5,
+    backgroundColor: '#6FDCED',
+    borderRadius: 50,
+    width: 80,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonInner: {
+    width: 66,
+    height: 66,
+    borderRadius: 50,
+    borderWidth: 3,
+    borderColor: 'white',
   },
   buttonText: {
     backgroundColor: '#FFFFFF',
@@ -50,7 +61,7 @@ const styles = StyleSheet.create({
 });
 
 class Photo extends React.Component {
-  _takePicture() {
+  _takePicture = () => {
     this.camera.capture(data => {
       this.props.toggleLoading();
       /** get image from library and send
@@ -59,6 +70,12 @@ class Photo extends React.Component {
       this.props.changeTab(2);
     });
   }
+
+  _renderTakePicture = () => (
+    <View style={styles.buttonOuter}>
+      <View style={styles.buttonInner}></View>
+    </View>
+  )
 
   render() {
     return (
@@ -70,11 +87,8 @@ class Photo extends React.Component {
         aspect={Camera.constants.Aspect.fit}
       >
         <View style={styles.buttonBar}>
-          <TouchableHighlight style={styles.button} onPress={this._switchCamera}>
-            <Text style={styles.buttonText}>Flip</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress={this._takePicture.bind(this)}>
-            <Text style={styles.buttonText}>Take</Text>
+          <TouchableHighlight style={styles.button} onPress={this._takePicture}>
+          { this._renderTakePicture()  }
           </TouchableHighlight>
         </View>
       </Camera>
