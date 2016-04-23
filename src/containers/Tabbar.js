@@ -13,7 +13,7 @@ import Boards from './Boards';
 const Tabbar = () => (
   <ScrollableTabView
     initialPage={1}
-    tabBarPosition="overlayBottom"
+    tabBarPosition="bottom"
     tabBarUnderlineColor={theme.color.three}
     tabBarActiveTextColor={theme.color.three}
     tabBarInactiveTextColor={theme.color.two}

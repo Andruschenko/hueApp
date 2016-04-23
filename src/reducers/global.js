@@ -13,6 +13,12 @@ export const globalReducer = (state = initialState, action) => {
         isLoading: !state.isLoading,
       };
 
+    case types.UPDATE_PROGRESS:
+      return {
+        ...state,
+        progress: action.value,
+      };
+
     default:
       return state;
   }
