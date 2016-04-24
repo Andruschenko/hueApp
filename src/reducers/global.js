@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   loadProgress: 0,
   tab: 1,
+  pieces: [],
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -26,10 +27,10 @@ export const globalReducer = (state = initialState, action) => {
         tab: action.index,
       };
 
-    case types.SEND_IMAGE:
+    case types.UPDATE_PIECES:
       return {
         ...state,
-        image: action.image, // image in base64 encoding
+        pieces: action.pieces,
       }
 
     default:

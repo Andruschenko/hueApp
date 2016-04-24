@@ -8,7 +8,6 @@ import Progress from 'react-native-progress';
 
 const styles = StyleSheet.create({
   container: {
-    margin: 180,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -17,11 +16,12 @@ const styles = StyleSheet.create({
 
 const Loading = ({ progress }) => (
   <View style={styles.container}>
-    <Progress.Circle
+    <Progress.CircleSnail
       size={250}
+      animating={true}
       animated={true}
       progress={progress}
-      color={theme.color.three}
+      color={[theme.color.one, theme.color.two, theme.color.three]}
       thickness={10}
     />
   </View>

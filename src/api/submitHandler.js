@@ -7,6 +7,7 @@ export default function (image) {
       image,
     }),
   })
-    .then(response => response.json())
-    .then(images => images);
+    .then(response => { console.log('response', response); response.json()})
+    .then(images => images)
+    .catch(err => err);
 }

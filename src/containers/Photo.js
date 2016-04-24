@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 0,
-    backgroundColor: '#fff',
     borderRadius: 5,
     color: '#000',
     padding: 10,
@@ -67,6 +66,14 @@ const styles = StyleSheet.create({
     height: 150,
     margin: 3,
   },
+  frame: {
+    flex: 1,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#6FDCED',
+  }
 });
 
 class Photo extends React.Component {
@@ -81,7 +88,6 @@ class Photo extends React.Component {
 
   _takePicture = () => {
     this.camera.capture({ target: Camera.constants.CaptureTarget.disk }, (error, imageUri) => {
-      // this.props.toggleLoading();
       /** get image from library and send
         request to api **/
 
@@ -91,10 +97,10 @@ class Photo extends React.Component {
       }
 
       RNFS.readFile(imageUri, 'base64')
-        .then(image => this.props.sendImage(image));
+        .then(image => {
+          this.props.sendImage(image);
+        });
 
-      // this.props.toggleLoading();
-      // this.props.changeTab(2);
     });
   }
 
@@ -120,6 +126,7 @@ class Photo extends React.Component {
 
   render() {
     return (
+      <View>
       <Camera
         ref={(cam) => {
           this.camera = cam;
@@ -133,6 +140,7 @@ class Photo extends React.Component {
           </TouchableHighlight>
         </View>
       </Camera>
+      </View>
     );
   }
 }

@@ -1,5 +1,6 @@
 import submitHandler from './../api/submitHandler';
 
+
 export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
@@ -17,21 +18,32 @@ export const changeTab = index => ({
   index,
 });
 
-export const SEND_IMAGE = 'SEND_IMAGE';
 // export const sendImage = (image) => ({
 //   type: SEND_IMAGE,
 //   image,
 // })
 
 export const UPDATE_PIECES = 'UPDATE_PIECES';
-export const updatePieces = pieces => ({
-  type: UPDATE_PIECES,
-  pieces,
-})
+export const updatePieces = pieces => {
+  console.log("pieces", pieces);
+  return ({
+    type: UPDATE_PIECES,
+    pieces,
+  })
+};
 
+// async action does not have constant action name and does not have reducer
 export const sendImage = (image) => {
   return (dispatch, getState) => {
-    submitHandler(image)
-      .then(pieces => dispatch(updatePieces(pieces)))
+    dispatch(toggleLoading());
+    //submitHandler(image)
+    Promise.resolve("asdjf")
+      .then(pieces => {
+        console.log(pieces);
+        dispatch(updatePieces(pieces));
+        setTimeout(dispatch(toggleLoading()), 5000);
+        dispatch(changeTab(2));
+      }
+    ).catch(err => console.log('error in sendImage: ', err));
   }
 };

@@ -1,21 +1,21 @@
-import image from '../mocks/image';
+import * as images from '../mocks/image';
 
 const initialState = [
   {
     date: '17th Nov. 1994',
-    src: image,
+    src: images.img2,
   },
   {
     date: '4th Mar. 1995',
-    src: image,
+    src: images.img3,
   },
   {
     date: '83rd Feb. 1996',
-    src: image,
+    src: images.img4,
   },
   {
     date: '18th Dec. 1996',
-    src: image,
+    src: images.img5,
   },
 ];
 
