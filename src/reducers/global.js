@@ -26,6 +26,12 @@ export const globalReducer = (state = initialState, action) => {
         tab: action.index,
       };
 
+    case types.SEND_IMAGE:
+      return {
+        ...state,
+        image: action.image, // image in base64 encoding
+      }
+
     default:
       return state;
   }

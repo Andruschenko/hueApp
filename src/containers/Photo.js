@@ -15,6 +15,8 @@ import api from '../api';
 import { mapDispatchToProps } from '../util/redux';
 import * as globalActions from '../actions/global';
 
+const RNFS = require('react-native-fs');
+
 const styles = StyleSheet.create({
   preview: {
     flex: 1,
@@ -88,21 +90,17 @@ class Photo extends React.Component {
         this.setState({ picUri: imageUri})
       }
 
-      // console.log("RCTCAMERAROLL?: ", RCTCameraRollManager);
-
-      // // retrieve image from CameraRoll
-      // setTimeout(() => {
-      //   CameraRoll.getPhotos({ first: 2})
-      //   .then((photos) => this.setState({ pic: photos.edges}), (e) => logError(e));
-      //   this.forceUpdate();
-      //   console.log("photos", photos);
-      // }, 3000)
-
+      RNFS.readFile(imageUri, 'base64')
+        .then(image => this.props.sendImage(image));
 
       // this.props.toggleLoading();
       // this.props.changeTab(2);
     });
   }
+
+  // _sendToServer = (uri) => {
+  //   readFile(path [, encoding])
+  // }
 
   _renderTakePicture = () => (
     <View style={styles.buttonOuter}>
