@@ -5,6 +5,8 @@ import React, {
   StyleSheet,
   TouchableHighlight,
   Alert,
+  Image,
+  CameraRoll,
 } from 'react-native';
 // import theme from '../theme';
 import { connect } from 'react-redux';
@@ -58,22 +60,63 @@ const styles = StyleSheet.create({
   buttonText: {
     backgroundColor: '#FFFFFF',
   },
+  image: {
+    width: 100,
+    height: 150,
+    margin: 3,
+  },
 });
 
 class Photo extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      picUri: ""
+    };
+  }
+
   _takePicture = () => {
-    this.camera.capture(data => {
-      this.props.toggleLoading();
+    this.camera.capture({ target: Camera.constants.CaptureTarget.disk }, (error, imageUri) => {
+      // this.props.toggleLoading();
       /** get image from library and send
         request to api **/
-      this.props.toggleLoading();
-      this.props.changeTab(2);
+
+      console.log('imageUri', imageUri);
+      if (!error) {
+        this.setState({ picUri: imageUri})
+      }
+
+      // console.log("RCTCAMERAROLL?: ", RCTCameraRollManager);
+
+      // // retrieve image from CameraRoll
+      // setTimeout(() => {
+      //   CameraRoll.getPhotos({ first: 2})
+      //   .then((photos) => this.setState({ pic: photos.edges}), (e) => logError(e));
+      //   this.forceUpdate();
+      //   console.log("photos", photos);
+      // }, 3000)
+
+
+      // this.props.toggleLoading();
+      // this.props.changeTab(2);
     });
   }
 
   _renderTakePicture = () => (
     <View style={styles.buttonOuter}>
       <View style={styles.buttonInner}></View>
+    </View>
+  )
+
+  _showLastImage = () => (
+    <View>
+      <Text>{ `Pic als String: ${String(this.state.pic)}` }</Text>
+      <Image
+        style={styles.image}
+        source={{uri: this.state.pic}}
+      />
     </View>
   )
 
@@ -88,7 +131,7 @@ class Photo extends React.Component {
       >
         <View style={styles.buttonBar}>
           <TouchableHighlight style={styles.button} onPress={this._takePicture}>
-          { this._renderTakePicture()  }
+          { this._renderTakePicture() }
           </TouchableHighlight>
         </View>
       </Camera>
