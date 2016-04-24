@@ -41,9 +41,11 @@ export const sendImage = (image) => {
       .then(pieces => {
         console.log(pieces);
         dispatch(updatePieces(pieces));
-        setTimeout(dispatch(toggleLoading()), 5000);
-        dispatch(changeTab(2));
-      }
-    ).catch(err => console.log('error in sendImage: ', err));
+        setTimeout(() => {
+          dispatch(toggleLoading());
+          dispatch(changeTab(2));
+        }, 5000)
+        })
+        .catch(err => console.log('error in sendImage: ', err));
   }
 };
