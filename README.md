@@ -33,3 +33,12 @@ On our [app profile on HackerEarth](https://www.hackerearth.com/sprints/burda-ha
 
 * Image recognition algorithm: [Burdahackday_backend](https://github.com/moritzbe/Burdahackday_backend)
 * Back-End: [hue-hug](https://github.com/breezykermo/hue-hug)
+
+## Team
+
+This project was brought to life with the help of the following awesome team members:
+
+* [breezykermo](https://github.com/breezykermo)
+* [moritzbe](https://github.com/moritzbe)
+* [BudickDa](https://github.com/BudickDa)
+* [mjodonnell](https://twitter.com/mjodonnell)
