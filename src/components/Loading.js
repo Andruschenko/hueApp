@@ -3,7 +3,7 @@ import React, {
   StyleSheet,
   PropTypes,
 } from 'react-native';
-import theme from '../theme';
+import theme from '../constants/tabBarTheme';
 import Progress from 'react-native-progress';
 
 const styles = StyleSheet.create({

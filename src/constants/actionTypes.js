@@ -1,0 +1,4 @@
+export const TOGGLE_LOADING = 'TOGGLE_LOADING';
+export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
+export const CHANGE_TAB = 'CHANGE_TAB';
+export const UPDATE_PIECES = 'UPDATE_PIECES';

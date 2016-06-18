@@ -31,7 +31,7 @@ export const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         pieces: action.pieces,
-      }
+      };
 
     default:
       return state;

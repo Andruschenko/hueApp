@@ -1,18 +1,25 @@
 import submitHandler from './../api/submitHandler';
 
+import {
+  TOGGLE_LOADING,
+  UPDATE_PROGRESS,
+  CHANGE_TAB,
+  UPDATE_PIECES,
+} from '../constants/actionTypes';
 
-export const TOGGLE_LOADING = 'TOGGLE_LOADING';
+import {
+  PIECES_TAB,
+} from '../constants/tabs';
+
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
 });
 
-export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
 export const updateProgress = (value) => ({
   type: UPDATE_PROGRESS,
   value,
 });
 
-export const CHANGE_TAB = 'CHANGE_TAB';
 export const changeTab = index => ({
   type: CHANGE_TAB,
   index,
@@ -23,7 +30,7 @@ export const changeTab = index => ({
 //   image,
 // })
 
-export const UPDATE_PIECES = 'UPDATE_PIECES';
+
 export const updatePieces = pieces => {
   console.log("pieces", pieces);
   return ({
@@ -37,13 +44,16 @@ export const sendImage = (image) => {
   return (dispatch, getState) => {
     dispatch(toggleLoading());
     //submitHandler(image)
-    Promise.resolve("asdjf")
+    Promise.resolve()
+      // dispatch API call action here
+      .then(() => {})
       .then(pieces => {
         console.log(pieces);
         dispatch(updatePieces(pieces));
         setTimeout(() => {
           dispatch(toggleLoading());
-          dispatch(changeTab(2));
+          // Move to Pieces tab
+          dispatch(changeTab(PIECES_TAB));
         }, 5000)
         })
         .catch(err => console.log('error in sendImage: ', err));

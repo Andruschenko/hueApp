@@ -21,5 +21,3 @@ export default function native() {
 
   AppRegistry.registerComponent('ColourDownApp', () => ColourDownApp);
 }
-
-

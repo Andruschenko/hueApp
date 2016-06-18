@@ -1,4 +1,4 @@
-export default {
+export default theme = {
   color: {
     one: '#529AEB',
     two: '#6555EB',
