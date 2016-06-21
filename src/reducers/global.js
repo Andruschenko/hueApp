@@ -4,7 +4,11 @@ const initialState = {
   isLoading: false,
   loadProgress: 0,
   tab: 1,
-  pieces: [],
+  pieces: {
+    red: [],
+    green: [],
+    blue: [],
+  },
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -18,7 +22,7 @@ export const globalReducer = (state = initialState, action) => {
     case types.UPDATE_PROGRESS:
       return {
         ...state,
-        progress: action.value,
+        loadProgress: action.value,
       };
 
     case types.CHANGE_TAB:

@@ -1,7 +1,9 @@
 import submitHandler from './submitHandler';
 import { localUrl, baseUrl } from './config';
 
+export const url = baseUrl;
+
 export default {
-  url: localUrl,
+  url: baseUrl,
   submit: submitHandler,
 };
