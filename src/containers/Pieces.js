@@ -1,6 +1,11 @@
 import Pieces from '../components/Pieces/Pieces';
 
-// export default connect(
-//   state => ({ pieces: state.global.pieces })
-// )(Pieces);
-export default Pieces;
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => ({
+  pieces: state.global.pieces,
+});
+
+export default connect(
+  mapStateToProps
+)(Pieces);

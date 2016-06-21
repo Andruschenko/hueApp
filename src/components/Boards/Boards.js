@@ -6,7 +6,7 @@ import React, {
 
 import styles from './Boards.styles';
 
-import Board from '../Board';
+import Board from '../Board';  // A single board
 
 export default Boards = props => (
   <View style={styles.container}>

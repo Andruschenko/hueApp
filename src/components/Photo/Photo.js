@@ -8,9 +8,11 @@ import React, {
 } from 'react-native';
 
 import Camera from 'react-native-camera';
-const RNFS = require('react-native-fs');
+import RNFS from 'react-native-fs';
 
 import styles from './Photo.styles.js';
+
+import { processImage } from '../../actions/global';
 
 export default class Photo extends React.Component {
   constructor(props) {
@@ -33,8 +35,9 @@ export default class Photo extends React.Component {
 
       RNFS.readFile(imageUri, 'base64')
         .then(image => {
-          this.props.sendImage(image);
-        });
+          this.props.dispatch(processImage(image));
+        })
+        .catch(err => console.log(err));
 
     });
   };

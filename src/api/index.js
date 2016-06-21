@@ -1,7 +1,7 @@
 import submitHandler from './submitHandler';
-import CONFIG from './config';
+import { localUrl, baseUrl } from './config';
 
 export default {
-  url: CONFIG.url,
+  url: localUrl,
   submit: submitHandler,
 };

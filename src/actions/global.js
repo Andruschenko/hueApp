@@ -1,4 +1,5 @@
-import submitHandler from './../api/submitHandler';
+// import submitHandler from './../api/submitHandler';
+import submit from '../api/submitHandler';
 
 import {
   TOGGLE_LOADING,
@@ -39,16 +40,24 @@ export const updatePieces = pieces => {
   })
 };
 
-// async action does not have constant action name and does not have reducer
 export const sendImage = (image) => {
+  return ({
+    type: UPDATE_PIECES,
+    image,
+  })
+};
+
+// async action does not have constant action name and does not have reducer
+export const processImage = (image) => {
+  // console.log('image in sendImage action', image);
+  // const pieces = [{'a': 1}, {'b': 2}];
   return (dispatch, getState) => {
     dispatch(toggleLoading());
-    //submitHandler(image)
-    Promise.resolve()
+    return Promise.resolve()
       // dispatch API call action here
-      .then(() => {})
+      .then(image => submit(image))
       .then(pieces => {
-        console.log(pieces);
+        console.log('pieces', pieces);
         dispatch(updatePieces(pieces));
         setTimeout(() => {
           dispatch(toggleLoading());
@@ -57,5 +66,5 @@ export const sendImage = (image) => {
         }, 5000)
         })
         .catch(err => console.log('error in sendImage: ', err));
-  }
+  };
 };

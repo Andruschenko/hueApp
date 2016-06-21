@@ -1,5 +1,6 @@
 import React, {
   ScrollView,
+  View,
   PropTypes,
 } from 'react-native';
 
@@ -9,9 +10,10 @@ import ScrollableTabView, {
 
 import theme from '../../constants/tabBarTheme';
 
-import Photo from '../Photo';
-import Pieces from '../Pieces';
-import Boards from '../Boards';
+// Import containers
+import Photo from '../../containers/Photo';
+import Pieces from '../../containers/Pieces';
+import Boards from '../../containers/Boards';
 
 export default Tabbar = props => (
   <ScrollableTabView
@@ -20,22 +22,20 @@ export default Tabbar = props => (
     tabBarActiveTextColor={theme.color.three}
     tabBarInactiveTextColor={theme.color.two}
     page={props.tab}
-    onChangeTab={i => props.changeTab(i.i)}
+    onChangeTab={ind => props.changeTab(ind.i)}
     renderTabBar={() => <DefaultTabBar />}
   >
     <ScrollView
       tabLabel="Boards"
     >
-      <Boards
-        boards={props.boards}
-      />
+      <Boards />
     </ScrollView>
 
-    <ScrollView
+    <View
       tabLabel="Photo"
     >
       <Photo />
-    </ScrollView>
+    </View>
 
     <ScrollView
       tabLabel="Pieces"
@@ -47,5 +47,4 @@ export default Tabbar = props => (
 
 Tabbar.propTypes = {
   tab: PropTypes.number.isRequired,
-  boards: PropTypes.array.isRequired,
 };

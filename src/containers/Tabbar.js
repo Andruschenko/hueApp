@@ -1,13 +1,23 @@
 import { connect } from 'react-redux';
-import { mapDispatchToProps } from '../util/redux';
-import * as globalActions from '../actions/global';
 
 import Tabbar from '../components/Tabbar/Tabbar';
 
-export default connect(
-  state => ({
+import {
+  changeTab
+} from '../actions/global';
+const mapStateToProps = (state) => {
+  return ({
     tab: state.global.tab,
-    boards: state.boards,
-  }),
-  mapDispatchToProps(globalActions)
+  });
+};
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    changeTab: (index) => changeTab(index),
+    dispatch,
+  });
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Tabbar);
