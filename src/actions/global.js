@@ -1,7 +1,5 @@
-// import submitHandler from './../api/submitHandler';
-import submit from '../api/submitHandler';
-
-import { url } from '../api';
+import { localUrl as url } from '../api/config';
+import { checkResponseStatus } from '../api/helpers';
 
 import {
   TOGGLE_LOADING,
@@ -14,7 +12,7 @@ import {
   PIECES_TAB,
 } from '../constants/tabs';
 
-import { img4 } from '../mocks/image';
+import { tinyImg } from '../mocks/tinyImage';
 
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
@@ -38,66 +36,37 @@ export const updatePieces = pieces => {
   })
 };
 
-export const requestPieces = (image) => {
+const requestPieces = (image, dispatch) => {
 
-  const checkStatus = (response) => {
-    if (response.status >= 200 && response.status < 300) {
-      return response
-    } else {
-      var error = new Error(response.statusText);
-      error.response = response;
-      throw error
-    }
-  };
-
-  console.log('image in requestPieces', image);
-
-  return dispatch => {
-    fetch(`${url}/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        // 'Access-Key': accessKey,
-      },
-      body: JSON.stringify({
-        // image,
-        img4,
-      })
+  return fetch(`${url}/submit`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Key': 'myAccessKey',  // use in future for safer requests
+    },
+    body: JSON.stringify({
+      image: tinyImg,
+      device_id: 'send_device_id', // use in future
     })
-      .then(checkStatus)
-      .then(response => {
-        console.log('the repsonse: ', response);
-        return response.json()
-      }).then(pieces => {
-      console.log('pieces in returned json', pieces);
-      dispatch(toggleLoading());
-      dispatch(updatePieces(pieces));
-      dispatch(changeTab(PIECES_TAB));
-    }).catch(function(ex) {
-      console.log('requestPieces - Parsing failed', ex)
-    });
-  };
+  })
+    .then(checkResponseStatus)
+    .then(responsePromise => responsePromise.json())
+    .then(data => dispatch(updatePieces(data.pieces)))
+    .then(() => dispatch(toggleLoading()))
+    .then(() => dispatch(changeTab(PIECES_TAB)))
+    .catch(err => console.log('error in requestPieces', err));
 
 };
 
-// async action does not have constant action name and does not have reducer
 export const processImage = (image) => {
-  // console.log('image in sendImage action', image);
-  // const pieces = [{'a': 1}, {'b': 2}];
+
   return dispatch => {
     dispatch(toggleLoading());
     return Promise.resolve()
       // dispatch API call action here
-      .then(image => requestPieces(image))
-      // .then(pieces => {
-      //   console.log('pieces back in processImage:', pieces);
-      //   dispatch(updatePieces(pieces));
-      //
-      //   // setTimeout(() => {
-      //   //
-      //   // }, 5000)
-      // })
+      .then(() => requestPieces(image, dispatch))
       .catch(err => console.log('error in processImage: ', err));
   };
+
 };
