@@ -6,14 +6,6 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  color: {
-
-  },
-  image: {
-    width: 200,
-    height: 80,
-    margin: 8,
-  },
   elm: {
     padding: 2,
   },
@@ -21,5 +13,9 @@ export default styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 28,
     fontFamily: 'AvenirNext-Heavy',
-  }
+  },
+  text: {
+    marginVertical: 3,
+    fontSize: 20,
+  },
 });

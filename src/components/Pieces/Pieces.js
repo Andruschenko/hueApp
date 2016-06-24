@@ -5,52 +5,50 @@ import React, {
   PropTypes,
 } from 'react-native';
 
+import Piece from '../Piece';
+
 import styles from './Pieces.styles';
 
 export default Pieces = props => {
-  
+
   const redLength = props.red.length;
   const greenLength = props.green.length;
   const blueLength = props.blue.length;
+
+  const _renderEmpty = () => (
+    <Text style={styles.text}>{`No pieces of this color in image.`}</Text>
+  );
 
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.title}>{`Red - ${redLength} pieces`}</Text>
         <View style={styles.elm}>
-          <Image
-            style={styles.image}
-            source={require('../../mocks/01.png')}
-          />
-          <Text>burda</Text>
-        </View>
-
-        <View style={styles.elm}>
-          <Image
-            style={styles.image}
-            source={require('../../mocks/04.png')}
-          />
-          <Text>sixteen</Text>
+          {
+            redLength > 0 ? props.red.map((piece, index) => (
+            <Piece key={index} color="red" {...piece} />
+            )) : _renderEmpty()
+          }
         </View>
 
         <Text style={styles.title}>{`Green - ${greenLength} pieces`}</Text>
 
         <View style={styles.elm}>
-          <Image
-            style={styles.image}
-            source={require('../../mocks/02.png')}
-          />
-          <Text>hackday</Text>
+          {
+            greenLength > 0 ? props.green.map((piece, index) => (
+            <Piece key={index} color="green" {...piece} />
+            )) : _renderEmpty()
+          }
         </View>
 
         <Text style={styles.title}>{`Blue - ${blueLength} pieces`}</Text>
 
         <View style={styles.elm}>
-          <Image
-            style={styles.image}
-            source={require('../../mocks/03.png')}
-          />
-          <Text>twenty</Text>
+          {
+            blueLength > 0 ? props.blue.map((piece, index) => (
+            <Piece key={index} color="blue" {...piece} />
+            )) : _renderEmpty()
+          }
         </View>
       </View>
     </View>
