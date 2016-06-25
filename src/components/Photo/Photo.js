@@ -13,6 +13,7 @@ import RNFS from 'react-native-fs';
 import styles from './Photo.styles.js';
 
 import { processImage } from '../../actions/global';
+import { addBoard } from '../../actions/boards';
 
 export default class Photo extends React.Component {
   constructor(props) {
@@ -25,21 +26,25 @@ export default class Photo extends React.Component {
 
   _takePicture = () => {
     this.camera.capture({ target: Camera.constants.CaptureTarget.disk }, (error, imageUri) => {
-      /** get image from library and send
-       request to api **/
 
+      /** get image from library and send request to api **/
       console.log('imageUri', imageUri);
       if (!error) {
         this.setState({ picUri: imageUri})
       }
 
       RNFS.readFile(imageUri, 'base64')
-        .then(image => {
-          this.props.dispatch(processImage(image));
-        })
+        // .then(image => {
+        //   this.props.dispatch(processImage(image));
+        //   return image;
+        // })
+        .then(image => this.props.dispatch(addBoard(image)))
         .catch(err => console.log(err));
-
     });
+  };
+
+  _addPictureToBoards = photo => {
+
   };
 
   // _sendToServer = (uri) => {

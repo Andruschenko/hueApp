@@ -1,4 +1,9 @@
-import * as types from '../constants/actionTypes';
+import {
+  TOGGLE_LOADING,
+  UPDATE_PROGRESS,
+  CHANGE_TAB,
+  UPDATE_PIECES,
+} from '../constants/actionTypes';
 
 const initialState = {
   isLoading: false,
@@ -13,25 +18,25 @@ const initialState = {
 
 export const globalReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.TOGGLE_LOADING:
+    case TOGGLE_LOADING:
       return {
         ...state,
         isLoading: !state.isLoading,
       };
 
-    case types.UPDATE_PROGRESS:
+    case UPDATE_PROGRESS:
       return {
         ...state,
         loadProgress: action.value,
       };
 
-    case types.CHANGE_TAB:
+    case CHANGE_TAB:
       return {
         ...state,
         tab: action.index,
       };
 
-    case types.UPDATE_PIECES:
+    case UPDATE_PIECES:
       return {
         ...state,
         pieces: action.pieces,

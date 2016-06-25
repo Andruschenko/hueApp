@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default styles = StyleSheet.create({
   header: {
@@ -10,4 +10,13 @@ export default styles = StyleSheet.create({
     padding: 40,
     flex: 1,
   },
+  callToActionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
+  },
+  text: {
+    fontSize: 22,
+  }
 });
