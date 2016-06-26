@@ -12,18 +12,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  text: {
+    fontSize: 22,
+    color: theme.color.one,
+  },
 });
 
 const Loading = ({ progress }) => (
   <View style={styles.container}>
     <Progress.CircleSnail
-      size={250}
+      size={200}
       animating={true}
       animated={true}
       progress={progress}
       color={[theme.color.one, theme.color.two, theme.color.three]}
-      thickness={10}
+      thickness={8}
     />
+    <Text>Processing your image...</Text>
   </View>
 );
 Loading.propTypes = {

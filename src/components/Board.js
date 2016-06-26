@@ -8,24 +8,25 @@ import React, {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 3,
     flexDirection: 'column',
-    height: 130,
+    height: 200,
     padding: 5,
   },
   date: {
     textAlign: 'center',
+    fontSize: 18,
+    paddingTop: 5,
     flex: 1,
   },
   image: {
-    flex: 2,
+    flex: 3,
   },
 });
 
 const Board = props => (
   <View style={styles.container}>
-    <Text style={styles.date} >{props.date}</Text>
     <Image style={styles.image} source={{ uri: props.src }} />
+    <Text style={styles.date} >{props.date}</Text>
   </View>
 );
 Board.propTypes = {

@@ -15,6 +15,7 @@ export default Piece = props => {
     endx,
     starty,
     endy,
+    color,
   } = props;
 
   const _renderText = () => (
@@ -22,7 +23,7 @@ export default Piece = props => {
   );
 
   const _renderPiece = () => (
-    <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${props.base64}` }} />
+    <Image style={[styles.image, {borderColor: color}]} source={{ uri: `data:image/jpeg;base64,${base64}` }} />
   );
 
   return (
@@ -33,6 +34,7 @@ export default Piece = props => {
 }
 Piece.propTypes = {
   base64: PropTypes.string.isRequired,
+  color: PropTypes.string,
 };
 
 
@@ -40,13 +42,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    height: 130,
-    padding: 5,
+    paddingVertical: 10,
   },
   image: {
-    width: 200,
-    height: 80,
-    margin: 8,
+    height: 120,
+    borderWidth: 3,
   },
   text: {
     marginVertical: 3,

@@ -6,50 +6,36 @@ import React, {
 } from 'react-native';
 
 import Piece from '../Piece';
-
 import styles from './Pieces.styles';
+import * as colors from '../../constants/colors';
 
 export default Pieces = props => {
 
-  const redLength = props.red.length;
-  const greenLength = props.green.length;
-  const blueLength = props.blue.length;
+  const { red, green, blue } = props;
 
   const _renderEmpty = () => (
-    <Text style={styles.text}>{`No pieces of this color in image.`}</Text>
+    <Text style={styles.text}>{`No pieces of this color detected.`}</Text>
+  );
+
+  const _renderPieces = (category, title, color) => (
+    <View>
+      <Text style={[styles.title, {color: color}]}>{`${title} (${category.length})`}</Text>
+      <View style={styles.elm}>
+        {
+          category.length > 0 ? category.map((piece, index) => (
+          <Piece key={index} color={color} {...piece} />
+          )) : _renderEmpty()
+        }
+      </View>
+    </View>
   );
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>{`Red - ${redLength} pieces`}</Text>
-        <View style={styles.elm}>
-          {
-            redLength > 0 ? props.red.map((piece, index) => (
-            <Piece key={index} color="red" {...piece} />
-            )) : _renderEmpty()
-          }
-        </View>
-
-        <Text style={styles.title}>{`Green - ${greenLength} pieces`}</Text>
-
-        <View style={styles.elm}>
-          {
-            greenLength > 0 ? props.green.map((piece, index) => (
-            <Piece key={index} color="green" {...piece} />
-            )) : _renderEmpty()
-          }
-        </View>
-
-        <Text style={styles.title}>{`Blue - ${blueLength} pieces`}</Text>
-
-        <View style={styles.elm}>
-          {
-            blueLength > 0 ? props.blue.map((piece, index) => (
-            <Piece key={index} color="blue" {...piece} />
-            )) : _renderEmpty()
-          }
-        </View>
+        {_renderPieces(red, 'Red', colors.red)}
+        {_renderPieces(green, 'Green', colors.green)}
+        {_renderPieces(blue, 'Blue', colors.blue)}
       </View>
     </View>
   )

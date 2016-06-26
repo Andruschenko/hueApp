@@ -1,10 +1,13 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+import { fontFamily, titleSize } from '../../constants/font';
+
 export default styles = StyleSheet.create({
   header: {
-    fontSize: 28,
-    fontFamily: 'AvenirNext-Heavy',
+    fontSize: titleSize,
+    fontFamily: fontFamily,
     textAlign: 'center',
+    paddingVertical: 10,
   },
   container: {
     padding: 40,
