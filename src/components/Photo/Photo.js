@@ -1,7 +1,7 @@
 import React, {
   View,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   Alert,
   Image,
   CameraRoll,
@@ -25,28 +25,24 @@ export default class Photo extends React.Component {
   }
 
   _takePicture = () => {
-    this.camera.capture({ target: Camera.constants.CaptureTarget.disk }, (error, imageUri) => {
-
-      /** get image from library and send request to api **/
-      console.log('imageUri', imageUri);
-      if (!error) {
-        this.setState({ picUri: imageUri})
-      }
-
-      RNFS.readFile(imageUri, 'base64')
-        .then(image => {
-          // console.log('image', image);
-          this.props.dispatch(processImage(image));
-          return image;
+    this.camera.capture({ target: Camera.constants.CaptureTarget.disk })
+      .then(imageData => {
+        console.log('picUri', imageData.path);
+        this.setState({ picUri: imageData.path});
+        return imageData.path;
+      })
+      .then(imageUri => {
+        RNFS.readFile(imageUri, 'base64')
+          .then(image => {
+            // console.log('image', image);
+            this.props.dispatch(processImage(image));
+            return image;
+          })
+          .then(image => this.props.dispatch(addBoard(image)))
+          .catch(err => console.error(err));
         })
-        .then(image => this.props.dispatch(addBoard(image)))
-        .catch(err => console.log(err));
-    });
+      .catch(err => console.error(err));
   };
-
-  // _sendToServer = (uri) => {
-  //   readFile(path [, encoding])
-  // }
 
   _renderTakePicture = () => (
     <View style={styles.buttonOuter}>
@@ -73,13 +69,12 @@ export default class Photo extends React.Component {
         }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fit}
-        >
-          <View style={styles.buttonBar}>
-            <TouchableHighlight style={styles.button} onPress={this._takePicture}>
-              { this._renderTakePicture() }
-            </TouchableHighlight>
-          </View>
-        </Camera>
+        />
+        <View style={styles.buttonBar}>
+          <TouchableOpacity style={styles.button} onPress={this._takePicture}>
+            { this._renderTakePicture() }
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

@@ -21,7 +21,7 @@ export default styles = StyleSheet.create({
   buttonBar: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 25,
+    bottom: 50,
     right: 0,
     left: 0,
     justifyContent: 'center',
