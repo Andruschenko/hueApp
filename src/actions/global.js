@@ -12,6 +12,8 @@ import {
   PIECES_TAB,
 } from '../constants/tabs';
 
+import { img2 } from '../mocks/image';
+
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
 });
@@ -44,6 +46,7 @@ const requestPieces = (image, dispatch) => {
       'Access-Key': 'myAccessKey',  // use in future for safer requests
     },
     body: JSON.stringify({
+      // image: img2, // uncomment this line to test with img2 (useful to test with simulator)
       image,
       device_id: 'send_device_id', // use in future
     })
