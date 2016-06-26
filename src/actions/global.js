@@ -1,4 +1,4 @@
-import { localUrl as url } from '../api/config';
+import { baseUrl, localUrl } from '../api/config';
 import { checkResponseStatus } from '../api/helpers';
 
 import {
@@ -11,8 +11,6 @@ import {
 import {
   PIECES_TAB,
 } from '../constants/tabs';
-
-import { tinyImg } from '../mocks/tinyImage';
 
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
@@ -38,7 +36,7 @@ export const updatePieces = pieces => {
 
 const requestPieces = (image, dispatch) => {
 
-  return fetch(`${url}/submit`, {
+  return fetch(`${baseUrl}/submit`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,12 +44,12 @@ const requestPieces = (image, dispatch) => {
       'Access-Key': 'myAccessKey',  // use in future for safer requests
     },
     body: JSON.stringify({
-      image: tinyImg,
+      image,
       device_id: 'send_device_id', // use in future
     })
   })
-    .then(checkResponseStatus)
-    .then(responsePromise => responsePromise.json())
+    // .then(checkResponseStatus)
+    .then(response => response.json())
     .then(data => dispatch(updatePieces(data.pieces)))
     .then(() => dispatch(toggleLoading()))
     .then(() => dispatch(changeTab(PIECES_TAB)))

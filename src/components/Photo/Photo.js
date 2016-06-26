@@ -34,17 +34,14 @@ export default class Photo extends React.Component {
       }
 
       RNFS.readFile(imageUri, 'base64')
-        // .then(image => {
-        //   this.props.dispatch(processImage(image));
-        //   return image;
-        // })
+        .then(image => {
+          // console.log('image', image);
+          this.props.dispatch(processImage(image));
+          return image;
+        })
         .then(image => this.props.dispatch(addBoard(image)))
         .catch(err => console.log(err));
     });
-  };
-
-  _addPictureToBoards = photo => {
-
   };
 
   // _sendToServer = (uri) => {
