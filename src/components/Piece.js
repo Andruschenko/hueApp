@@ -4,6 +4,7 @@ import React, {
   Text,
   StyleSheet,
   PropTypes,
+  Image,
 } from 'react-native';
 
 export default Piece = props => {
@@ -21,12 +22,12 @@ export default Piece = props => {
   );
 
   const _renderPiece = () => (
-    <Image source={{ uri: props.base64 }} />
+    <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${props.base64}` }} />
   );
 
   return (
-    <View>
-      {_renderText()}
+    <View style={styles.container} >
+      {_renderPiece()}
     </View>
   );
 }
@@ -36,6 +37,12 @@ Piece.propTypes = {
 
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    height: 130,
+    padding: 5,
+  },
   image: {
     width: 200,
     height: 80,
