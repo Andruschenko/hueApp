@@ -21,5 +21,5 @@ export default styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-  }
+  },
 });
