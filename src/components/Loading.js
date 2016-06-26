@@ -2,6 +2,7 @@ import React, {
   View,
   StyleSheet,
   PropTypes,
+  Text,
 } from 'react-native';
 import theme from '../constants/tabBarTheme';
 import Progress from 'react-native-progress';
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
+    paddingVertical: 20,
     fontSize: 22,
     color: theme.color.one,
   },
@@ -28,7 +30,7 @@ const Loading = ({ progress }) => (
       color={[theme.color.one, theme.color.two, theme.color.three]}
       thickness={8}
     />
-    <Text>Processing your image...</Text>
+    <Text style={styles.text}>Processing your image...</Text>
   </View>
 );
 Loading.propTypes = {
