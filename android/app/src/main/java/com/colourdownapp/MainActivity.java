@@ -2,7 +2,9 @@ package com.colourdownapp;
 
 import com.facebook.react.ReactActivity;
 import com.rnfs.RNFSPackage;
-import com.lwansbrough.ReactCamera.ReactCamera;
+// import com.lwansbrough.ReactCamera.ReactCamera;
+import com.lwansbrough.RCTCamera.*;
+// import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -38,7 +40,7 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new RNFSPackage(),
-            new ReactCamera()
+            new RCTCameraPackage()
         );
     }
 }
