@@ -29,13 +29,6 @@ On our [app profile on HackerEarth](https://www.hackerearth.com/sprints/burda-ha
 * All single parts (i.e. mobile app, algorithm and back-end) are done. They just have to be connected and tested.
 * So far only tested on iOS.
 
-## Run server with Docker and DockerCompose
-
-```bash
-cd server
-docker-compose up
-```
-
 ## Team
 
 This project was brought to life with the help of the following awesome team members:
