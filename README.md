@@ -18,7 +18,7 @@ On our [app profile on HackerEarth](https://www.hackerearth.com/sprints/burda-ha
 
 		$ git clone https://github.com/Andruschenko/hueApp.git
 
-2. Inside the cloned folder open Xcode 
+2. Inside the cloned folder open Xcode
 
 		$ open ios/ColourDownApp.xcodeproj/
 
@@ -29,10 +29,12 @@ On our [app profile on HackerEarth](https://www.hackerearth.com/sprints/burda-ha
 * All single parts (i.e. mobile app, algorithm and back-end) are done. They just have to be connected and tested.
 * So far only tested on iOS.
 
-## This app should run together with
+## Run server with Docker and DockerCompose
 
-* Image recognition algorithm: [Burdahackday_backend](https://github.com/moritzbe/Burdahackday_backend)
-* Back-End: [hue-hug](https://github.com/breezykermo/hue-hug)
+```bash
+cd server
+docker-compose up
+```
 
 ## Team
 
