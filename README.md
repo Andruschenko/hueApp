@@ -12,11 +12,11 @@ On our [app profile on HackerEarth](https://www.hackerearth.com/sprints/burda-ha
 
 >Capture whiteboard, flipchart or paper brainstorming by drawing a red, blue or green circle, oval, rectangle or square around the key information, opening the Claire Cut App, snapping a photo, and sending clipped sections to relevant members of an organization through connection to relevant services like Slack, XING, Dropbox, Gmail, Evernote and others.
 
-## How to run
+## Run (iOS)
 
 1. Clone the repo
 
-		$ git clone https://github.com/Andruschenko/hueApp.git
+		$ git clone https://github.com/clairecut/clairecut-app.git
 
 2. Inside the cloned folder open Xcode
 
@@ -26,14 +26,14 @@ On our [app profile on HackerEarth](https://www.hackerearth.com/sprints/burda-ha
 
 ## TODO
 
-* All single parts (i.e. mobile app, algorithm and back-end) are done. They just have to be connected and tested.
-* So far only tested on iOS.
+see `TODO.md`
 
 ## Team
 
-This project was brought to life with the help of the following awesome team members:
+This project was brought to life by (in alphabetical order):
 
+* [Andruschenko](https://github.com/Andruschenko)
 * [breezykermo](https://github.com/breezykermo)
-* [moritzbe](https://github.com/moritzbe)
 * [BudickDa](https://github.com/BudickDa)
 * [mjodonnell](https://twitter.com/mjodonnell)
+* [moritzbe](https://github.com/moritzbe)
