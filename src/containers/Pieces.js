@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return ({
-    red: state.global.pieces.red,
-    green: state.global.pieces.green,
-    blue: state.global.pieces.blue,
+    red: state.pieces.red,
+    green: state.pieces.green,
+    blue: state.pieces.blue,
   });
 };
 

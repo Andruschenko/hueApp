@@ -1,5 +1,3 @@
-import * as images from '../mocks/image';
-
 import {
   ADD_BOARD,
 } from '../constants/actionTypes';

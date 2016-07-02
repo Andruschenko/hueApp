@@ -1,5 +1,7 @@
 import { baseUrl, localUrl } from '../api/config';
-import { checkResponseStatus } from '../api/helpers';
+// import { checkResponseStatus } from '../api/helpers';
+
+import { updatePieces } from './pieces';
 
 import RNFS from 'react-native-fs';
 
@@ -7,7 +9,6 @@ import {
   TOGGLE_LOADING,
   // UPDATE_PROGRESS,
   CHANGE_TAB,
-  UPDATE_PIECES,
 } from '../constants/actionTypes';
 
 import {
@@ -30,15 +31,7 @@ export const changeTab = index => ({
   index,
 });
 
-export const updatePieces = pieces => {
-  console.log("pieces", pieces);
-  return ({
-    type: UPDATE_PIECES,
-    pieces,
-  })
-};
-
-const requestPieces = (imagePath, dispatch) => {
+const requestPieces = (image, dispatch) => {
 
   return fetch(`${baseUrl}/submit`, {
     method: 'POST',
