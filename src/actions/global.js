@@ -1,6 +1,8 @@
 import { baseUrl, localUrl } from '../api/config';
 import { checkResponseStatus } from '../api/helpers';
 
+import RNFS from 'react-native-fs';
+
 import {
   TOGGLE_LOADING,
   // UPDATE_PROGRESS,
@@ -36,7 +38,7 @@ export const updatePieces = pieces => {
   })
 };
 
-const requestPieces = (image, dispatch) => {
+const requestPieces = (imagePath, dispatch) => {
 
   return fetch(`${baseUrl}/submit`, {
     method: 'POST',
@@ -48,6 +50,14 @@ const requestPieces = (image, dispatch) => {
     body: JSON.stringify({
       // image: img2, // uncomment this line to test with img2 (useful to test with simulator)
       image,
+
+      // TODO: Send file as FormData
+      // image: {
+      //   uri: imagePath,
+      //   type: 'image/jpeg',
+      //   name: 'photo.jpg',
+      // },
+
       device_id: 'send_device_id', // use in future
     })
   })
@@ -60,13 +70,28 @@ const requestPieces = (image, dispatch) => {
 
 };
 
-export const processImage = (image) => {
+const retrieveImageFromStorage = imagePath => {
+
+  // Throws file does not exist
+  // TODO: Fix file-retrieval for Android by sending FormData in requestPieces
+
+  return RNFS.readFile(imagePath, 'base64')
+    .then(image => {
+      console.log('image', image);
+      // return image;
+      return image;
+    })
+    .catch(err => console.error(err));
+};
+
+export const processImage = (imagePath) => {
 
   return dispatch => {
     dispatch(toggleLoading());
     return Promise.resolve()
+      .then(() => retrieveImageFromStorage(imagePath))
       // dispatch API call action here
-      .then(() => requestPieces(image, dispatch))
+      .then(image => requestPieces(image, dispatch))
       .catch(err => console.log('error in processImage: ', err));
   };
 
