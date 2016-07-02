@@ -1,25 +1,20 @@
 # TODO
 
-* Add Onboarding --> Design 2,3 static screens which explain ClaireCutApp
 * Design:
   * Improve appearance of date in Boards view
-  * Remove Camera Button black background when pressing
   * Add button in empty boards view to move to camera
 
-* HockeyApp: Set up fastlane to build to HockeyApp
-
-* Test request to server with real Android device
-
-* Refactoring
-  * Move boards pieces action to actions/boards.js
-  * Move boards location in state out of global into root of store
+* HockeyApp: Set up fastlane to build to HockeyApp and create Android + iOS build
   
 * New features
   * Tap to open image in full screen (board + piece)
   * Send piece to social media
+  * Add Onboarding --> Design 2,3 static screens which explain ClaireCutApp
 
 * Fix Bugs
   * Processing works only once - subsequent fotos are not processed.
+  * File retrieval doesn't work on Android
+  		* Solution: File should be sent as FormData. 
 
 * Other tasks
-  * Change App Name to `ClaireCutApp`
+  * Change React Native Project Name to `ClaireCutApp`
