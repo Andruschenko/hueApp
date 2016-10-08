@@ -1,4 +1,4 @@
-import React from 'react-native';
+import React from 'react';
 import { connect } from 'react-redux';
 import Tabbar from './containers/Tabbar';
 import Loading from './components/Loading';

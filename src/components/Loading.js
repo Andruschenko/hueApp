@@ -1,9 +1,10 @@
-import React, {
+import React, { PropTypes } from 'react';
+import {
   View,
   StyleSheet,
-  PropTypes,
   Text,
 } from 'react-native';
+
 import theme from '../constants/tabBarTheme';
 import Progress from 'react-native-progress';
 

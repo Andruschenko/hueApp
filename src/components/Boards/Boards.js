@@ -1,7 +1,7 @@
-import React, {
-  View,
+import React, { PropTypes } from 'react';
+import {
   Text,
-  PropTypes,
+  View,
 } from 'react-native';
 
 import styles from './Boards.styles';
