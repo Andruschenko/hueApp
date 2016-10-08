@@ -1,8 +1,8 @@
-import React, {
+import React, { PropTypes } from 'react';
+import {
   View,
   Text,
   Image,
-  PropTypes,
 } from 'react-native';
 
 import Piece from '../Piece';

@@ -1,7 +1,7 @@
-import React, {
+import React, { PropTypes } from 'react';
+import {
   ScrollView,
   View,
-  PropTypes,
 } from 'react-native';
 
 import ScrollableTabView, {
