@@ -16,6 +16,7 @@ import {
 } from '../constants/tabs';
 
 import { img2 } from '../mocks/image';
+import { oneRed } from '../mocks/one-red';
 
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
@@ -42,7 +43,8 @@ const requestPieces = (image, dispatch) => {
     },
     body: JSON.stringify({
       // image: img2, // uncomment this line to test with img2 (useful to test with simulator)
-      image,
+      image: oneRed, // uncomment this line to test with img2 (useful to test with simulator)
+      // image,
 
       // TODO: Send file as FormData
       // image: {
@@ -56,6 +58,7 @@ const requestPieces = (image, dispatch) => {
   })
     // .then(checkResponseStatus)
     .then(response => response.json())
+    // TODO: Debug JSON response
     .then(data => dispatch(updatePieces(data.pieces)))
     .then(() => dispatch(toggleLoading()))
     .then(() => dispatch(changeTab(PIECES_TAB)))
