@@ -5,16 +5,16 @@ import {
   Image,
 } from 'react-native';
 
-import Piece from '../Piece';
-import styles from './Pieces.styles';
+import Piece from './component/Piece';
+import styles from './styles';
 import * as colors from '../../constants/colors';
 
-export default Pieces = props => {
+const Pieces = props => {
 
-  const { red, green, blue } = props;
-  const empty = red.length == 0 && green.length == 0 && blue.length == 0;
+  const { red, green, blue, renderEmpty } = props;
+  console.log('props', props);
 
-  const _renderNoPieces = () => (
+  const _renderNoPiecesInColor = () => (
     <Text style={styles.noPiecesText}>{`No pieces of this color detected.`}</Text>
   );
 
@@ -25,7 +25,7 @@ export default Pieces = props => {
         {
           category.length > 0 ? category.map((piece, index) => (
           <Piece key={index} color={color} {...piece} />
-          )) : _renderNoPieces()
+          )) : _renderNoPiecesInColor()
         }
       </View>
     </View>
@@ -39,16 +39,9 @@ export default Pieces = props => {
     </View>
   );
 
-  const _renderEmpty = () => (
-    <View style={styles.emptyMessageContainer}>
-      <Text style={styles.text}>No results (yet).</Text>
-      <Text style={styles.subText}>This text may show up when no photo was taken yet or the analysis did not find any pieces.</Text>
-    </View>
-  );
-
   return (
     <View>
-      {empty ? _renderEmpty() : _renderPieces()}
+      { renderEmpty ? renderEmpty() : _renderPieces() }
     </View>
   )
 };
@@ -56,4 +49,10 @@ Pieces.propTypes = {
   red: PropTypes.array.isRequired,
   green: PropTypes.array.isRequired,
   blue: PropTypes.array.isRequired,
+  renderEmpty: PropTypes.func,
 };
+Pieces.defaultProps = {
+  renderEmpty: () => {},
+};
+
+export default Pieces;
