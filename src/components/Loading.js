@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import theme from '../constants/tabBarTheme';
-import Progress from 'react-native-progress';
+import { CircleSnail } from 'react-native-progress';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 const Loading = ({ progress }) => (
   <View style={styles.container}>
-    <Progress.CircleSnail
+    <CircleSnail
       size={200}
       animating={true}
       animated={true}
