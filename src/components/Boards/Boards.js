@@ -6,7 +6,7 @@ import {
 
 import styles from './Boards.styles';
 
-import Board from '../Board';  // A single board
+import Board from './components/Board';  // A single board
 
 
 export default Boards = props => {

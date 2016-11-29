@@ -3,4 +3,8 @@ export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
 export const CHANGE_TAB = 'CHANGE_TAB';
 export const UPDATE_PIECES = 'UPDATE_PIECES';
 
+export const PROCESS_IMAGE_START = 'camera/PROCESS_IMAGE_START';
+export const PROCESS_IMAGE_SUCCESS = 'camera/PROCESS_IMAGE_SUCCESS';
+export const PROCESS_IMAGE_ERROR = 'camera/PROCESS_IMAGE_ERROR';
+
 export const ADD_BOARD = 'ADD_BOARD';
