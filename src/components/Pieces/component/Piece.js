@@ -1,4 +1,7 @@
-import React, { Component, PropTypes, } from 'react';
+import React, {
+  Component,
+  PropTypes,
+} from 'react';
 import {
   View,
   Text,
@@ -6,23 +9,24 @@ import {
   Image,
 } from 'react-native';
 
-export default Piece = props => {
+import styles from './styles';
 
+export default Piece = props => {
   const {
-    base64,
-    startx,
-    endx,
-    starty,
-    endy,
+    image,
     color,
+    // startx,
+    // endx,
+    // starty,
+    // endy,
   } = props;
 
-  const _renderText = () => (
-    <Text style={styles.text}>{`startx: ${startx}, endx: ${endx}`}</Text>
-  );
+  // const _renderText = () => (
+  //   <Text style={styles.text}>{`startx: ${startx}, endx: ${endx}`}</Text>
+  // );
 
   const _renderPiece = () => (
-    <Image style={[styles.image, {borderColor: color}]} source={{ uri: `data:image/jpeg;base64,${base64}` }} />
+    <Image style={[styles.image, {borderColor: color}]} source={{ uri: `data:image/jpeg;base64,${image}` }} />
   );
 
   return (
@@ -32,23 +36,6 @@ export default Piece = props => {
   );
 }
 Piece.propTypes = {
-  base64: PropTypes.string.isRequired,
-  color: PropTypes.string,
+  image: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    paddingVertical: 10,
-  },
-  image: {
-    height: 120,
-    borderWidth: 3,
-  },
-  text: {
-    marginVertical: 3,
-    fontSize: 20,
-  },
-});

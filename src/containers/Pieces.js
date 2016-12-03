@@ -8,28 +8,29 @@ import {
 import { connect } from 'react-redux';
 
 import Pieces from '../components/Pieces';
+import { piecesInitialState } from '../reducers/pieces';
 
-const mapStateToProps = ({ pieces: { red, green, blue }, boards, camera }) => {
+const mapStateToProps = ({ pieces, boards, camera }) => {
   return ({
-    red,
-    green,
-    blue,
+    pieces,
     boards,
     camera,
   });
 };
 
 class PiecesContainer extends Component {
-  // static proptypes = {
-  //
-  // };
+  static propTypes = {
+    pieces: PropTypes.object,
+    boards: PropTypes.array,
+    camera: PropTypes.object,
+  };
 
   _renderEmpty = () => {
-    const { red, green, blue, boards, camera } = this.props;
+    const { pieces, boards, camera } = this.props;
     let title = 'An unknown error occurred';
     let message = '';
 
-    if (camera.image) {
+    if (pieces !== piecesInitialState) {
       return null;
     }
     if (boards.length === 0) {
@@ -44,7 +45,7 @@ class PiecesContainer extends Component {
       title = 'Nothing to show yet!';
       message = 'Please take a picture first and find your pieces here.';
     }
-    else if (red.length === 0 && green.length === 0 && blue.length === 0) {
+    else if (pieces === piecesInitialState) {
       title = 'No pieces found in image';
       message = 'Our analysis did not find any circles in your image.';
     }
@@ -58,7 +59,7 @@ class PiecesContainer extends Component {
   };
 
   render() {
-    const { red, green, blue } = this.props;
+    const { pieces: { red, green, blue } } = this.props;
     return (
       <Pieces
         red={red}

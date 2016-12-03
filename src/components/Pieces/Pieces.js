@@ -12,6 +12,7 @@ import * as colors from '../../constants/colors';
 const Pieces = props => {
 
   const { red, green, blue, renderEmpty } = props;
+
   console.log('props', props);
 
   const _renderNoPiecesInColor = () => (
@@ -24,7 +25,7 @@ const Pieces = props => {
       <View style={styles.elm}>
         {
           category.length > 0 ? category.map((piece, index) => (
-          <Piece key={index} color={color} {...piece} />
+          <Piece key={index} color={color} image={piece} />
           )) : _renderNoPiecesInColor()
         }
       </View>
@@ -39,9 +40,11 @@ const Pieces = props => {
     </View>
   );
 
+  console.log('renderEmpty', renderEmpty);
+
   return (
     <View>
-      { renderEmpty ? renderEmpty() : _renderPieces() }
+      { _renderPieces() }
     </View>
   )
 };
@@ -56,3 +59,5 @@ Pieces.defaultProps = {
 };
 
 export default Pieces;
+
+// { renderEmpty ? renderEmpty() : _renderPieces() }

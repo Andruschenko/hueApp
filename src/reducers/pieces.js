@@ -1,8 +1,10 @@
 import {
-  UPDATE_PIECES,
+  PROCESS_IMAGE_START,
+  PROCESS_IMAGE_SUCCESS,
+  PROCESS_IMAGE_ERROR,
 } from '../constants/actionTypes';
 
-const initialState = {
+export const piecesInitialState = {
   red: [
     // {
     //   base64: '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAaAD4DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDz/UtR1LS9a1O0ivpeZt/3+cYBH866W08aacLO3+0s/wBpK/vAq8A+v0rXvtE03UTI9zaK8rgBpBww/HtWRrMegeHtIgjm0xJo5ZPLUYG8nv8ANjNWac0WiC28bLMkqiweSbcRGiHGV9Sf/rVt6Tq8es6e9xaxkSocNG/8JxxmqGpeErK+tYPsQ+xPGnysq54Pr3NZeq2c3hzRFsbK6aS8vJcybBh2AH8I7UBaLNnQdfk1S6u7K6hEV3bsd237uAcZrcCnqRjjNcxomk20mgS2kdhc2czAbp5eHd+uR7VgWV94itdelt42lmu4xtKMuQy+vPH40C5Vc0D4zvbmO7gtLUfalY+SFQthB1zWj4W8QzauZ7e8KmeL5t2MZHSsnwzpl/J4nl1CSyktLcbyyvwCW64pxP2Dx/qQjAUSQ+YAOBg7f/r0A+XZGz4t1S70i0tLm224M+19xxkYzj8cGsPxHqtpr9ppC2rYm+0gyRMOUyMVo/ETjRLfHH7/AP8AZTXG6Rz4jsFPT7UoxQVGKsdHroOn+OLKPR555Lx8C6j3ZXr0x6YzW/rVokdzHq0NjJeXsWIUVTwoLdSD6Vj+E/3njXVnf5m3yjceT94V2K9RTIk9SveT3cVoZra1E05GfK3bRn0zXOXfjS605Qb/AMPXEPO0uWwCfY45/OurHU1k+JY0k0N1kRWHmLwwz3FBKZfsrtL6yhukR1SVQwDDBxXDeMZltPFSS4ILWoHB/wBr/wCtXfxKqWsSqAFEa4AHArhPGcaPr0O5Fb9x3Gf4qBo//9k=',
@@ -31,12 +33,13 @@ const initialState = {
   ],
 };
 
-export const pieces = (state = initialState, action) => {
+export const pieces = (state = piecesInitialState, action) => {
   switch (action.type) {
-
-    case UPDATE_PIECES:
+    case PROCESS_IMAGE_SUCCESS:
       return action.pieces;
-
+    case PROCESS_IMAGE_START:
+    case PROCESS_IMAGE_ERROR:
+      return piecesInitialState;
     default:
       return state;
   }

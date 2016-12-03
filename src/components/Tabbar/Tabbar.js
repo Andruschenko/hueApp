@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 
 import ScrollableTabView, {
@@ -12,6 +13,8 @@ import ScrollableTabView, {
 } from 'react-native-scrollable-tab-view';
 
 import DeviceInfo from 'react-native-device-info'
+
+import { processImage } from '../../actions/global';
 
 import theme from '../../constants/tabBarTheme';
 
@@ -29,6 +32,12 @@ export default Tabbar = props => {
   _renderPlaceholder = () => (
     <View style={styles.container}>
       <Text style={styles.text}>No Camera available in iOS Simulator</Text>
+      <TouchableOpacity
+        onPress={() => props.dispatch(processImage())}
+        style={{ backgroundColor: 'yellow', padding: 10, }}
+      >
+        <Text>Process Image</Text>
+      </TouchableOpacity>
     </View>
   );
 

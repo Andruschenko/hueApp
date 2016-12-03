@@ -1,8 +1,6 @@
 import { baseUrl, localUrl } from '../api/config';
 // import { checkResponseStatus } from '../api/helpers';
 
-import { updatePieces } from './pieces';
-
 import RNFS from 'react-native-fs';
 
 import {
@@ -24,50 +22,38 @@ import {
 import { img2 } from '../mocks/image';
 import { oneRed } from '../mocks/one-red';
 
+
 export const toggleLoading = () => ({
   type: TOGGLE_LOADING,
 });
-
-// export const updateProgress = (value) => ({
-//   type: UPDATE_PROGRESS,
-//   value,
-// });
 
 export const changeTab = index => ({
   type: CHANGE_TAB,
   index,
 });
 
-const requestPieces = (image, dispatch) => {
+const requestPieces = (photo, dispatch) => {
+
+  // const image = photo;
+  // const image = img2;
+  const image = oneRed;
 
   return Promise.resolve()
-    .then(() => dispatch())
     .then(() => fetch(`${baseUrl}/submit`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Access-Key': 'myAccessKey',  // use in future for safer requests
+        // 'Accept': 'application/json',
+        // 'Access-Key': 'myAccessKey',  // use in future for safer requests
       },
       body: JSON.stringify({
-        // image: img2, // uncomment this line to test with img2 (useful to test with simulator)
-        image: oneRed, // uncomment this line to test with img2 (useful to test with simulator)
-        // image,
-
-        // TODO: Send file as FormData
-        // image: {
-        //   uri: imagePath,
-        //   type: 'image/jpeg',
-        //   name: 'photo.jpg',
-        // },
-
-        device_id: 'send_device_id', // use in future
+        image,
+        // device_id: ' send_device_id', // use in future to store images
       })
     }))
     // .then(checkResponseStatus)
-    .then(response => response.json())
-    // TODO: Debug JSON response
-    .then(data => dispatch(updatePieces(data.pieces)))
+    .then(response => { console.log('response', response); return response.json(); })
+    .then(data => dispatch(processImageSuccess(data.pieces)))
     .then(() => dispatch(toggleLoading()))
     .then(() => dispatch(changeTab(PIECES_TAB)))
     .catch(error => console.log('error in requestPieces', error));
@@ -92,9 +78,8 @@ export const processImage = (imagePath) => {
     return Promise.resolve()
       .then(() => dispatch(processImageStart()))
       .then(() => dispatch(toggleLoading()))
-      .then(() => retrieveImageFromStorage(imagePath))
+      // .then(() => retrieveImageFromStorage(imagePath))
       .then(image => requestPieces(image, dispatch))
-      .then(() => dispatch(processImageSuccess()))    // TODO: Add image as output
-      .catch(error => dispatch(processImageError(error)));
+      .catch(error => console.log('error in processImage', error));
   };
 };

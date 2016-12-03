@@ -4,16 +4,13 @@ import {
   PROCESS_IMAGE_START,
   PROCESS_IMAGE_SUCCESS,
   PROCESS_IMAGE_ERROR,
+  TAKE_PHOTO_SUCCESS,
 } from '../constants/actionTypes';
 
-export const image = (state = null, action) => {
+export const image = (state = '', action) => {
   switch (action.type) {
-    case PROCESS_IMAGE_SUCCESS:
-      // return action.image;
-      return 'this should be the returned base64 image';
-    case PROCESS_IMAGE_START:
-    case PROCESS_IMAGE_ERROR:
-      return null;
+    case TAKE_PHOTO_SUCCESS:
+      return action.image;
     default:
       return state;
   }

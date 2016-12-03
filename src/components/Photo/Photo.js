@@ -13,7 +13,7 @@ import Camera from 'react-native-camera';
 import styles from './Photo.styles.js';
 
 import { processImage } from '../../actions/global';
-import { addBoard } from '../../actions/boards';
+import { takePhotoSuccess } from '../../actions/camera';
 
 export default class Photo extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class Photo extends React.Component {
   _takePicture = () => {
     this.camera.capture({ target: Camera.constants.CaptureTarget.disk })
       .then(imageData => this.props.dispatch(processImage(imageData.path)))
-      .then(image => this.props.dispatch(addBoard(image)))
+      .then(image => this.props.dispatch(takePhotoSuccess(image)))
       .catch(err => console.error(err));
   };
 
