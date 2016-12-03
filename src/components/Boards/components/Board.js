@@ -6,26 +6,14 @@ import {
   Text,
 } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    height: 200,
-    padding: 5,
-  },
-  date: {
-    textAlign: 'center',
-    fontSize: 18,
-    paddingTop: 5,
-    flex: 1,
-  },
-  image: {
-    flex: 3,
-  },
-});
+import styles from './styles';
 
 const Board = props => (
   <View style={styles.container}>
-    <Image style={styles.image} source={{ uri: props.src }} />
+    <Image
+      source={{ uri: props.src }}
+      style={styles.image}
+    />
     <Text style={styles.date} >{props.date}</Text>
   </View>
 );

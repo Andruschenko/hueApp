@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Tabbar from '../components/Tabbar/Tabbar';
+import Tabbar from '../components/Tabbar';
 
 import {
   changeTab

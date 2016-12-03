@@ -34,9 +34,9 @@ export const changeTab = index => ({
 
 const requestPieces = (photo, dispatch) => {
 
-  // const image = photo;
+  const image = photo;
   // const image = img2;
-  const image = oneRed;
+  // const image = oneRed;
 
   return Promise.resolve()
     .then(() => fetch(`${baseUrl}/submit`, {
@@ -56,7 +56,7 @@ const requestPieces = (photo, dispatch) => {
     .then(data => dispatch(processImageSuccess(data.pieces)))
     .then(() => dispatch(toggleLoading()))
     .then(() => dispatch(changeTab(PIECES_TAB)))
-    .catch(error => console.log('error in requestPieces', error));
+    .catch(error => dispatch(processImageError(error)));
 };
 
 const retrieveImageFromStorage = imagePath => {
@@ -78,7 +78,7 @@ export const processImage = (imagePath) => {
     return Promise.resolve()
       .then(() => dispatch(processImageStart()))
       .then(() => dispatch(toggleLoading()))
-      // .then(() => retrieveImageFromStorage(imagePath))
+      .then(() => retrieveImageFromStorage(imagePath))
       .then(image => requestPieces(image, dispatch))
       .catch(error => console.log('error in processImage', error));
   };

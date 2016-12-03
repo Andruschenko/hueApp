@@ -40,11 +40,9 @@ const Pieces = props => {
     </View>
   );
 
-  console.log('renderEmpty', renderEmpty);
-
   return (
     <View>
-      { _renderPieces() }
+      { renderEmpty ? renderEmpty() : _renderPieces() }
     </View>
   )
 };
@@ -59,5 +57,3 @@ Pieces.defaultProps = {
 };
 
 export default Pieces;
-
-// { renderEmpty ? renderEmpty() : _renderPieces() }

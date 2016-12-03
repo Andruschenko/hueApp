@@ -7,5 +7,3 @@ export const PROCESS_IMAGE_SUCCESS = 'camera/PROCESS_IMAGE_SUCCESS';
 export const PROCESS_IMAGE_ERROR = 'camera/PROCESS_IMAGE_ERROR';
 
 export const TAKE_PHOTO_SUCCESS = 'camera/TAKE_PHOTO_SUCCESS';
-
-export const ADD_BOARD = 'ADD_BOARD';

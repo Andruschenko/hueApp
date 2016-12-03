@@ -1,4 +1,4 @@
-import Photo from '../components/Photo/Photo';
+import Photo from '../components/Photo';
 
 import { connect } from 'react-redux';
 

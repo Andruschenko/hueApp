@@ -34,7 +34,7 @@ export default Tabbar = props => {
       <Text style={styles.text}>No Camera available in iOS Simulator</Text>
       <TouchableOpacity
         onPress={() => props.dispatch(processImage())}
-        style={{ backgroundColor: 'yellow', padding: 10, }}
+        style={{ backgroundColor: 'yellow', padding: 10, marginVertical: 10 }}
       >
         <Text>Process Image</Text>
       </TouchableOpacity>
