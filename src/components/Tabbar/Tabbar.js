@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Platform,
 } from 'react-native';
 
 import ScrollableTabView, {
@@ -21,8 +22,8 @@ import Boards from '../../containers/Boards';
 
 export default Tabbar = props => {
 
-  _isSimulator = () => {
-    return DeviceInfo.getModel()==="Simulator";
+  _isIosSimulator = () => {
+    return Platform.OS === 'ios' && DeviceInfo.isEmulator();
   };
 
   _renderPlaceholder = () => (
@@ -50,7 +51,7 @@ export default Tabbar = props => {
         tabLabel="Photo"
         style={{ flex: 1 }}
       >
-        {_isSimulator ? _renderPlaceholder() : <Photo />}
+        {_isIosSimulator() ? _renderPlaceholder() : <Photo />}
       </View>
 
       <ScrollView

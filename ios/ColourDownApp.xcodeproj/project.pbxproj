@@ -26,6 +26,7 @@
 		1A47A4D51DA941D8007004BD /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A72203B1CCB82D700706221 /* libRCTCamera.a */; };
 		1A47A4D61DA941DF007004BD /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABAF49F1CCCB2DA0073DB6F /* libRNFS.a */; };
 		1A47A4D71DA941E5007004BD /* libRNShimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8007711CCC1BFC00893ECE /* libRNShimmer.a */; };
+		1A938CB61DF3374B00A4D750 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A938CB31DF3370300A4D750 /* libRNDeviceInfo.a */; };
 		1ABAF4A11CCCBE3D0073DB6F /* react-native-fs in Resources */ = {isa = PBXBuildFile; fileRef = 1ABAF4A01CCCBE3D0073DB6F /* react-native-fs */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,13 @@
 			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
 			remoteInfo = RCTCamera;
 		};
+		1A938CB21DF3370300A4D750 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A938CA21DF3370300A4D750 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
 		1ABAF49E1CCCB2DA0073DB6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53FC858E8EE84A489DE9DE75 /* RNFS.xcodeproj */;
@@ -159,6 +167,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ColourDownApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ColourDownApp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		1A938CA21DF3370300A4D750 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		1ABAF4A01CCCBE3D0073DB6F /* react-native-fs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "react-native-fs"; path = "../node_modules/react-native-fs"; sourceTree = "<group>"; };
 		53FC858E8EE84A489DE9DE75 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		577B7116AB854C60901F04E2 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
@@ -180,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A938CB61DF3374B00A4D750 /* libRNDeviceInfo.a in Frameworks */,
 				1A47A4D71DA941E5007004BD /* libRNShimmer.a in Frameworks */,
 				1A47A4D61DA941DF007004BD /* libRNFS.a in Frameworks */,
 				1A47A4D51DA941D8007004BD /* libRCTCamera.a in Frameworks */,
@@ -319,6 +329,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1A938CA31DF3370300A4D750 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A938CB31DF3370300A4D750 /* libRNDeviceInfo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1ABAF48E1CCCB2DA0073DB6F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +356,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1A938CA21DF3370300A4D750 /* RNDeviceInfo.xcodeproj */,
 				1ABAF4A01CCCBE3D0073DB6F /* react-native-fs */,
 				0A8007431CCBFF3000893ECE /* ART.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -505,6 +524,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 1A938CA31DF3370300A4D750 /* Products */;
+					ProjectRef = 1A938CA21DF3370300A4D750 /* RNDeviceInfo.xcodeproj */;
+				},
+				{
 					ProductGroup = 1ABAF48E1CCCB2DA0073DB6F /* Products */;
 					ProjectRef = 53FC858E8EE84A489DE9DE75 /* RNFS.xcodeproj */;
 				},
@@ -597,6 +620,13 @@
 			fileType = archive.ar;
 			path = libRCTCamera.a;
 			remoteRef = 1A72203A1CCB82D700706221 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1A938CB31DF3370300A4D750 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = 1A938CB21DF3370300A4D750 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		1ABAF49F1CCCB2DA0073DB6F /* libRNFS.a */ = {
