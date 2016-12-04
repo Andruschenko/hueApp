@@ -3,6 +3,7 @@ import {
   PROCESS_IMAGE_SUCCESS,
   PROCESS_IMAGE_ERROR,
   TAKE_PHOTO_SUCCESS,
+  TAKE_PHOTO_ERROR,
 } from '../constants/actionTypes';
 
 export const processImageStart = () => ({
@@ -21,5 +22,10 @@ export const processImageError = (error) => ({
 
 export const takePhotoSuccess = (image) => ({
   type: TAKE_PHOTO_SUCCESS,
+  image
+});
+
+export const takePhotoError = (image) => ({
+  type: TAKE_PHOTO_ERROR,
   image
 });

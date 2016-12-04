@@ -13,7 +13,10 @@ import Camera from 'react-native-camera';
 import styles from './styles.js';
 
 import { processImage } from '../../actions/global';
-import { takePhotoSuccess } from '../../actions/camera';
+import {
+  takePhotoSuccess,
+  takePhotoError,
+} from '../../actions/camera';
 
 export default class Photo extends React.Component {
   constructor(props) {
@@ -21,10 +24,13 @@ export default class Photo extends React.Component {
   }
 
   _takePicture = () => {
-    this.camera.capture({ target: Camera.constants.CaptureTarget.disk })
-      .then(imageData => this.props.dispatch(processImage(imageData.path)))
-      .then(image => this.props.dispatch(takePhotoSuccess(image)))
-      .catch(err => console.error(err));
+    const { dispatch } = this.props;
+    this.camera.capture({
+      title: 'My image',
+    })
+      .then(imageData => dispatch(processImage(imageData.path)))
+      // .then(image => dispatch(takePhotoSuccess(image)))
+      .catch(error => dispatch(takePhotoError(error)));
   };
 
   _renderTakePicture = () => (
@@ -52,6 +58,8 @@ export default class Photo extends React.Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fit}
+          captureTarget={Camera.constants.CaptureTarget.temp}
+          type={Camera.constants.Type.back}
         />
         <View style={styles.buttonBar}>
           <TouchableOpacity style={styles.button} onPress={this._takePicture}>
