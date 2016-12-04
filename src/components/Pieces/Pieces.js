@@ -13,8 +13,6 @@ const Pieces = props => {
 
   const { red, green, blue, renderEmpty } = props;
 
-  console.log('props', props);
-
   const _renderNoPiecesInColor = () => (
     <Text style={styles.noPiecesText}>{`No pieces of this color detected.`}</Text>
   );

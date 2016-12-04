@@ -25,11 +25,13 @@ export default class Photo extends React.Component {
 
   _takePicture = () => {
     const { dispatch } = this.props;
-    this.camera.capture({
-      title: 'My image',
-    })
-      .then(imageData => dispatch(processImage(imageData.path)))
-      // .then(image => dispatch(takePhotoSuccess(image)))
+    this.camera.capture()
+      .then(imageData => {
+        dispatch(takePhotoSuccess(imageData.path));
+        return imageData.path;
+      })
+      // TODO: Confirmation step - Retake photo?
+      .then(imagePath => dispatch(processImage(imagePath)))
       .catch(error => dispatch(takePhotoError(error)));
   };
 
@@ -39,15 +41,15 @@ export default class Photo extends React.Component {
     </View>
   );
 
-  _showLastImage = () => (
-    <View>
-      <Text>{ `Pic als String: ${String(this.state.pic)}` }</Text>
-      <Image
-        style={styles.image}
-        source={{uri: this.state.pic}}
-      />
-    </View>
-  );
+  // _showLastImage = () => (
+  //   <View>
+  //     <Text>{ `Pic als String: ${String(this.state.pic)}` }</Text>
+  //     <Image
+  //       style={styles.image}
+  //       source={{uri: this.state.pic}}
+  //     />
+  //   </View>
+  // );
 
   render() {
     return (
@@ -58,7 +60,7 @@ export default class Photo extends React.Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fit}
-          captureTarget={Camera.constants.CaptureTarget.temp}
+          captureTarget={Camera.constants.CaptureTarget.disk}
           type={Camera.constants.Type.back}
         />
         <View style={styles.buttonBar}>

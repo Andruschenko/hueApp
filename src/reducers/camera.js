@@ -8,6 +8,9 @@ import {
   TAKE_PHOTO_ERROR,
 } from '../constants/actionTypes';
 
+/**
+ * The path of the current image
+ */
 export const image = (state = '', action) => {
   switch (action.type) {
     case TAKE_PHOTO_SUCCESS:

@@ -1,6 +1,5 @@
 import { baseUrl, localUrl } from '../api/config';
 
-import fs from 'react-native-fs';
 import DeviceInfo from 'react-native-device-info'
 
 import {
@@ -13,13 +12,15 @@ import {
   processImageSuccess,
   processImageError,
 } from './camera';
+import {
+  retrieveBase64ImageFromStorage,
+  copyFileToPermanentStorage,
+} from './storage';
+import { createBoard } from './board';
 
 import {
   PIECES_TAB,
 } from '../constants/tabs';
-
-import { img2 } from '../mocks/image';
-import { oneRed } from '../mocks/one-red';
 
 
 export const toggleLoading = () => ({
@@ -49,25 +50,6 @@ const requestPieces = (image) => {
     .then(response => response.json())
 };
 
-const retrieveBase64ImageFromStorage = imagePath => {
-  const matches = imagePath.match(/^file:\/{2}(.+\.jpg)$/);
-
-  console.log('stat(imagePath)', fs.stat(matches[1]));
-  // console.log('iOS: MainBundlePath', fs.MainBundlePath);
-  // console.log('Android: DocumentDirectoryPath', fs.DocumentDirectoryPath);
-  // console.log('CachesDirectoryPath', fs.CachesDirectoryPath);
-  // console.log('PicturesDirectoryPath', fs.PicturesDirectoryPath);
-
-  if (matches[1] && fs.exists(matches[1])) {
-    return Promise.resolve()
-      .then(() => fs.readFile(matches[1], 'base64'))
-      .then(image => `data:image/jpeg;base64,${image}`)
-      .catch(err => console.error(err));
-  } else {
-    return oneRed || img2;
-  }
-};
-
 const onProcessImageSuccess = (pieces, tab) => (
   dispatch => (
     Promise.resolve()
@@ -77,11 +59,12 @@ const onProcessImageSuccess = (pieces, tab) => (
   )
 );
 
-const onProcessImageError = (error) => (
+const onProcessImageError = (error, tab) => (
   dispatch => (
     Promise.resolve()
       .then(() => dispatch(processImageError(error)))
       .then(() => dispatch(toggleLoading()))
+      .then(() => dispatch(changeTab(tab)))
   )
 );
 
@@ -92,9 +75,11 @@ export const processImage = (imagePath) => {
       .then(() => dispatch(toggleLoading()))
       .then(() => retrieveBase64ImageFromStorage(imagePath))
       .then(image => requestPieces(image))
-      // .then(data => dispatch(processImageSuccess(data.pieces)))
       .then(data => dispatch(onProcessImageSuccess(data.pieces, PIECES_TAB)))
-      // .catch(error => dispatch(processImageError(error)));
-      .catch(error => dispatch(onProcessImageError(error)));
+      // 1. create board
+      .then(() => dispatch(createBoard(imagePath)))
+      // 2. save with that new id name to permanent storage
+      // .then(() => copyFileToPermanentStorage(imagePath))
+      .catch(error => dispatch(onProcessImageError(error, PIECES_TAB)));
   };
 };

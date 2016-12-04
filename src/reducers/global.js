@@ -8,6 +8,7 @@ const initialState = {
   isLoading: false,
   loadProgress: 0,
   tab: 1,
+  deviceId: '',
 };
 
 export const globalReducer = (state = initialState, action) => {
