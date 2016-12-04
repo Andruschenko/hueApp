@@ -5,6 +5,8 @@ import { img2 } from '../mocks/image';
 import { oneRed } from '../mocks/one-red';
 
 export const getRealImagePath = path => {
+  if (Platform.OS === 'ios') return path;
+
   const matches = path.match(/^file:\/{2}(.+\.jpg)$/);
   return matches[1] || path;
 };
