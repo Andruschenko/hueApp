@@ -12,7 +12,7 @@ import configureStore from './store/configureStore';
 export default function native() {
   const store = configureStore();
 
-  class ColourDownApp extends Component {
+  class ClaireCut extends Component {
     render() {
       return (
         <Provider store={store}>
@@ -22,5 +22,5 @@ export default function native() {
     }
   }
 
-  AppRegistry.registerComponent('ColourDownApp', () => ColourDownApp);
+  AppRegistry.registerComponent('ClaireCut', () => ClaireCut);
 }
