@@ -15,4 +15,10 @@ export default styles = StyleSheet.create({
   image: {
     flex: 3,
   },
+  noImage: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ABE88D',
+  }
 });
